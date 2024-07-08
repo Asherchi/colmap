@@ -46,12 +46,12 @@
 namespace colmap {
 
 int RunAutomaticReconstructor(int argc, char** argv) {
-  AutomaticReconstructionController::Options reconstruction_options;
+  AutomaticReconstructionController::Options reconstruction_options;  // 这个是存储数据的一个类 struct
   std::string data_type = "individual";
   std::string quality = "high";
   std::string mesher = "poisson";
 
-  OptionManager options;
+  OptionManager options;  // 真牛 还自己写了一个数据结构
   options.AddRequiredOption("workspace_path",
                             &reconstruction_options.workspace_path);
   options.AddRequiredOption("image_path", &reconstruction_options.image_path);
@@ -117,8 +117,8 @@ int RunAutomaticReconstructor(int argc, char** argv) {
     LOG(FATAL_THROW) << "Invalid mesher provided";
   }
 
-  auto reconstruction_manager = std::make_shared<ReconstructionManager>();
-
+  auto reconstruction_manager = std::make_shared<ReconstructionManager>();  // share智能指针
+  // 两种模式 使用GPU 和 使用CPU
   if (reconstruction_options.use_gpu && kUseOpenGL) {
     QApplication app(argc, argv);
     AutomaticReconstructionController controller(reconstruction_options,

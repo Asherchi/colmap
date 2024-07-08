@@ -38,7 +38,8 @@
 #include "colmap/util/version.h"
 
 namespace {
-
+/* 这行代码创建了一个名为 "command_func_t" 的别名，用于指代特定类型的函数。在这种情况下，它是一个接受整数和字符指针指针作为参数并返回整数的函数。
+ 这利用了C++标准库的 "std::function" 来定义函数签名。*/
 typedef std::function<int(int, char**)> command_func_t;
 
 int ShowHelp(
@@ -92,7 +93,7 @@ int main(int argc, char** argv) {
   Q_INIT_RESOURCE(resources);
 #endif
 
-  std::vector<std::pair<std::string, command_func_t>> commands;
+  std::vector<std::pair<std::string, command_func_t>> commands;  // 这个为什么不设置为hash 后面使用不是更方便吗
   commands.emplace_back("gui", &colmap::RunGraphicalUserInterface);
   commands.emplace_back("automatic_reconstructor",
                         &colmap::RunAutomaticReconstructor);
