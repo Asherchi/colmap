@@ -93,6 +93,8 @@ int main(int argc, char** argv) {
   Q_INIT_RESOURCE(resources);
 #endif
 
+  // 看看docker能不能work使用github
+
   std::vector<std::pair<std::string, command_func_t>> commands;  // 这个为什么不设置为hash 后面使用不是更方便吗
   commands.emplace_back("gui", &colmap::RunGraphicalUserInterface);
   commands.emplace_back("automatic_reconstructor",
