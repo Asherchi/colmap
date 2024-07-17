@@ -292,7 +292,7 @@ void ReadImagesBinary(Reconstruction& reconstruction, const std::string& path) {
 
     image.SetImageId(ReadBinaryLittleEndian<image_t>(&file));
 
-    Rigid3d& cam_from_world = image.CamFromWorld();
+    Rigid3d& cam_from_world = image.CamFromWorld();  // 很直观的可以看出 colmap的坐标系是 world to cam
     cam_from_world.rotation.w() = ReadBinaryLittleEndian<double>(&file);
     cam_from_world.rotation.x() = ReadBinaryLittleEndian<double>(&file);
     cam_from_world.rotation.y() = ReadBinaryLittleEndian<double>(&file);

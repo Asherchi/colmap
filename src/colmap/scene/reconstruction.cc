@@ -412,7 +412,7 @@ Reconstruction Reconstruction::Crop(
 
 const class Image* Reconstruction::FindImageWithName(
     const std::string& name) const {
-  for (const auto& image : images_) {
+  for (const auto& image : images_) {  // 这里为啥不搞一个 hash 保存对应的name 和 idx 
     if (image.second.Name() == name) {
       return &image.second;
     }

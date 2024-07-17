@@ -118,7 +118,7 @@ int main(int argc, char** argv) {
                         &colmap::RunImageUndistorterStandalone);
   commands.emplace_back("mapper", &colmap::RunMapper);
   commands.emplace_back("matches_importer", &colmap::RunMatchesImporter);
-  commands.emplace_back("model_aligner", &colmap::RunModelAligner);
+  commands.emplace_back("model_aligner", &colmap::RunModelAligner);  // 详细看下 model aligner的用法 并整理下
   commands.emplace_back("model_analyzer", &colmap::RunModelAnalyzer);
   commands.emplace_back("model_comparer", &colmap::RunModelComparer);
   commands.emplace_back("model_converter", &colmap::RunModelConverter);

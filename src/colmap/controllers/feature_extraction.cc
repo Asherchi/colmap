@@ -503,7 +503,7 @@ class FeatureExtractorController : public Thread {
   ImageReader image_reader_;
 
   std::vector<std::unique_ptr<Thread>> resizers_;
-  std::vector<std::unique_ptr<Thread>> extractors_;
+  std::vector<std::unique_ptr<Thread>> extractors_;  // 这玩意儿应该是一个线程池
   std::unique_ptr<Thread> writer_;
 
   std::unique_ptr<JobQueue<ImageData>> resizer_queue_;

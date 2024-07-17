@@ -192,7 +192,7 @@ bool AlignReconstructionToLocations(
     const int min_common_images,
     const RANSACOptions& ransac_options,
     Sim3d* tgt_from_src) {
-  THROW_CHECK_GE(min_common_images, 3);
+  THROW_CHECK_GE(min_common_images, 3);  // 最少公共图像数量需要大于等于3
   THROW_CHECK_EQ(tgt_image_names.size(), tgt_image_locations.size());
 
   // Find out which images are contained in the reconstruction and get the
@@ -208,7 +208,7 @@ bool AlignReconstructionToLocations(
     }
 
     if (!src_reconstruction.IsImageRegistered(src_image->ImageId())) {
-      continue;
+      continue;  // 这个model我记得是从已有的bin读取的 如果没有被注册 理论上应该不会存在这个图像 不过严谨点也没有错
     }
 
     // Ignore duplicate images.

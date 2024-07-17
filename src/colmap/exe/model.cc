@@ -266,6 +266,9 @@ void PrintComparisonSummary(std::ostream& out,
 // alignment
 // - robust_alignment_max_error: ransac error to use if robust alignment is
 // enabled
+/*
+   这个函数执行的是一个刚体的变换 并且要求 两个模型之间有相同的数据 比如image name 且要对应生成这个 geos.txt
+*/
 int RunModelAligner(int argc, char** argv) {
   std::string input_path;
   std::string output_path;
@@ -374,7 +377,7 @@ int RunModelAligner(int argc, char** argv) {
     for (size_t i = 0; i < ref_image_names.size(); ++i) {
       const Image* image = reconstruction.FindImageWithName(ref_image_names[i]);
       if (image != nullptr) {
-        errors.push_back((image->ProjectionCenter() - ref_locations[i]).norm());
+        errors.push_back((image->ProjectionCenter() - ref_locations[i]).norm());  // 这里的norm是二范数 
       }
     }
     LOG(INFO) << StringPrintf("=> Alignment error: %f (mean), %f (median)",

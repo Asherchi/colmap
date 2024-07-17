@@ -84,7 +84,7 @@ void FileCopy(const std::string& src_path,
               CopyType type) {
   switch (type) {
     case CopyType::COPY:
-      boost::filesystem::copy_file(src_path, dst_path);
+      boost::filesystem::copy_file(src_path, dst_path);  // #include <boost/filesystem.hpp> 就可以使用 boost::filesystem
       break;
     case CopyType::HARD_LINK:
       boost::filesystem::create_hard_link(src_path, dst_path);
