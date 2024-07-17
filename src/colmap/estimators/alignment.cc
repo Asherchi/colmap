@@ -412,6 +412,11 @@ bool MergeReconstructions(const double max_reproj_error,
                           const Reconstruction& src_reconstruction,
                           Reconstruction& tgt_reconstruction) {
   Sim3d tgt_from_src;
+  /* 这玩意儿算的也是一个非常硬的刚体变换 
+     要是两个子模型中的其中一个可能说效果差点 那岂不是直接错层 
+     所以易现线上的那种model align以及 merge的方式就是傻逼
+     然后有一点想不通的是 model merge会算刚体变换 为什么要做model align呢？ 想不通
+     */
   if (!AlignReconstructionsViaReprojections(src_reconstruction,
                                             tgt_reconstruction,
                                             /*min_inlier_observations=*/0.3,
@@ -438,7 +443,7 @@ bool MergeReconstructions(const double max_reproj_error,
     auto src_image = src_reconstruction.Image(image_id);
     src_image.SetRegistered(false);
     src_image.CamFromWorld() =
-        TransformCameraWorld(tgt_from_src, src_image.CamFromWorld());
+        TransformCameraWorld(tgt_from_src, src_image.CamFromWorld());  // 这玩意儿直接做一个刚体变换 这怎么行呢？
     tgt_reconstruction.AddImage(src_image);
     tgt_reconstruction.RegisterImage(image_id);
     if (!tgt_reconstruction.ExistsCamera(src_image.CameraId())) {
@@ -454,6 +459,11 @@ bool MergeReconstructions(const double max_reproj_error,
   //    - merge tracks that are unambiguous, i.e. only merge points in the two
   //      reconstructions if they have a one-to-one mapping.
   // Note that in both cases no cheirality or reprojection test is performed.
+
+  /* 
+      如下虽然是会对3D点进行合并消除 但是是基于common image 去做的 不会对同一个场景拍的不同名字的图像进行处理
+      所以错层由此产生 
+  */
 
   for (const auto& point3D : src_reconstruction.Points3D()) {
     Track new_track;

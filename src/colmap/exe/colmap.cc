@@ -103,7 +103,7 @@ int main(int argc, char** argv) {
   commands.emplace_back("color_extractor", &colmap::RunColorExtractor);
   commands.emplace_back("database_cleaner", &colmap::RunDatabaseCleaner);
   commands.emplace_back("database_creator", &colmap::RunDatabaseCreator);
-  commands.emplace_back("database_merger", &colmap::RunDatabaseMerger);
+  commands.emplace_back("database_merger", &colmap::RunDatabaseMerger);  // 合并的两个子DB中 不允许还有相同的名字的图像
   commands.emplace_back("delaunay_mesher", &colmap::RunDelaunayMesher);
   commands.emplace_back("exhaustive_matcher", &colmap::RunExhaustiveMatcher);
   commands.emplace_back("feature_extractor", &colmap::RunFeatureExtractor);
@@ -123,7 +123,7 @@ int main(int argc, char** argv) {
   commands.emplace_back("model_comparer", &colmap::RunModelComparer);
   commands.emplace_back("model_converter", &colmap::RunModelConverter);
   commands.emplace_back("model_cropper", &colmap::RunModelCropper);
-  commands.emplace_back("model_merger", &colmap::RunModelMerger);
+  commands.emplace_back("model_merger", &colmap::RunModelMerger);  // 两个 sparse model合并
   commands.emplace_back("model_orientation_aligner",
                         &colmap::RunModelOrientationAligner);
   commands.emplace_back("model_splitter", &colmap::RunModelSplitter);

@@ -41,7 +41,7 @@ namespace colmap {
 bool MergeAndFilterReconstructions(const double max_reproj_error,
                                    const Reconstruction& src_reconstruction,
                                    Reconstruction& tgt_reconstruction) {
-  if (!MergeReconstructions(
+  if (!MergeReconstructions(  // 主要是这个 
           max_reproj_error, src_reconstruction, tgt_reconstruction)) {
     return false;
   }

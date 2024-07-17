@@ -738,7 +738,7 @@ int RunModelMerger(int argc, char** argv) {
   LOG(INFO) << StringPrintf("Points: %d", reconstruction2.NumPoints3D());
 
   PrintHeading2("Merging reconstructions");
-  if (MergeAndFilterReconstructions(
+  if (MergeAndFilterReconstructions(  // 主要合并的函数在这
           max_reproj_error, reconstruction1, reconstruction2)) {
     LOG(INFO) << "=> Merge succeeded";
     PrintHeading2("Merged reconstruction");
@@ -748,7 +748,7 @@ int RunModelMerger(int argc, char** argv) {
     LOG(INFO) << "=> Merge failed";
   }
 
-  reconstruction2.Write(output_path);
+  reconstruction2.Write(output_path);  // 把1和2的合并到2,然后最后的结果写到 output path
 
   return EXIT_SUCCESS;
 }
