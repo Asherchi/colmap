@@ -924,6 +924,10 @@ void Database::ClearTwoViewGeometries() const {
   database_cleared_ = true;
 }
 
+/* 
+    两个database合并 不允许存在两个DB中有相同名字的图像 不然会起冲突 
+    
+*/
 void Database::Merge(const Database& database1,
                      const Database& database2,
                      Database* merged_database) {
